@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/packages
+/MetacriticAPI/.vs
+/MetacriticAPI/bin
+/MetacriticAPI/logs
+/MetacriticAPI/obj
+/MetacriticAPI/packages
+/MetacriticAPI/Properties/PublishProfiles
