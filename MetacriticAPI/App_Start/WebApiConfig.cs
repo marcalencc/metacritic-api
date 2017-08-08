@@ -15,10 +15,24 @@ namespace MetacriticAPI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{title}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                name: "MediaItemRoute",
+                routeTemplate: "api/{controller}/{title}");
+
+            config.Routes.MapHttpRoute(
+                name: "MediaItemRouteWithYear",
+                routeTemplate: "api/{controller}/{title}/{year}",
+                defaults: new { action = "GetAlbumWithYear" },
+                constraints: new { year = @"\d+" });
+
+            config.Routes.MapHttpRoute(
+                name: "MediaItemRouteWithDetails",
+                routeTemplate: "api/{controller}/{title}/{details}",
+                defaults: new { action = "GetAlbumDetails" });
+
+            config.Routes.MapHttpRoute(
+                name: "MediaItemRouteWithYearAndDetails",
+                routeTemplate: "api/{controller}/{title}/{year}/{details}");
+
         }
     }
 }
