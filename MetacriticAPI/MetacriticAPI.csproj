@@ -106,6 +106,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\MediaItemController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\TvShowController.cs" />
     <Compile Include="Global.asax.cs">
