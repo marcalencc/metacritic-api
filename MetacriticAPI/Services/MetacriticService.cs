@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net;
 using MetacriticScraper.Scraper;
 using MetacriticScraper.Interfaces;
+using MetacriticScraper.Errors;
 using System.Threading;
-using Newtonsoft.Json;
 
 namespace MetacriticAPI.Services
 {
@@ -22,9 +21,30 @@ namespace MetacriticAPI.Services
             m_requestItemsLock = new object();
         }
 
-        public IMetacriticData[] GetResult(string id, string url)
+        public IMetacriticData[] GetResult(string id, string url, out HttpStatusCode statusCode)
         {
-            m_metacriticScraper.AddItem(id, url);
+            try
+            {
+                m_metacriticScraper.AddItem(id, url);
+            }
+            catch(SystemBusyException ex)
+            {
+                // log
+                Error[] error = new Error[1];
+                Error err = new Error(ex);
+                error[0] = err;
+                statusCode = HttpStatusCode.ServiceUnavailable;
+                return error;
+            }
+            catch (InvalidUrlException ex)
+            {
+                // log
+                Error[] error = new Error[1];
+                Error err = new Error(ex);
+                error[0] = err;
+                statusCode = HttpStatusCode.NotFound;
+                return error;
+            }
 
             ResponseItem item = new ResponseItem();
             lock (m_requestItemsLock)
@@ -33,6 +53,7 @@ namespace MetacriticAPI.Services
             }
             item.WaitEvent.WaitOne(30000);
 
+            statusCode = HttpStatusCode.OK;
             return item.Response;
         }
 

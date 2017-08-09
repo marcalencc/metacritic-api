@@ -21,35 +21,73 @@ namespace MetacriticAPI.Controllers
         [HttpGet]
         public IHttpActionResult Get(string title)
         {
+            HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
-            IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/album/{0}", title));
-            return Json(result);
+            IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/album/{0}", title),
+                out statusCode);
+
+            if (statusCode == HttpStatusCode.OK)
+            {
+                return Json(result);
+            }
+            else
+            {
+                return Content(statusCode, result);
+            }
         }
 
         [HttpGet]
-        public IHttpActionResult GetAlbumDetails(string title, string details)
+        public IHttpActionResult GetDetails(string title, string details)
         {
-            string id = m_metacriticService.GetId();
-            IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/album/{0}/details", title));
-            return Json(result);
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetAlbumWithYear(string title, int? year)
-        {
+            HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/album/{0}/{1}",
-                title, year));
-            return Json(result);
+                title, details), out statusCode);
+
+            if (statusCode == HttpStatusCode.OK)
+            {
+                return Json(result);
+            }
+            else
+            {
+                return Content(statusCode, result);
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetItemWithYear(string title, int? year)
+        {
+            HttpStatusCode statusCode;
+            string id = m_metacriticService.GetId();
+            IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/album/{0}/{1}",
+                title, year), out statusCode);
+
+            if (statusCode == HttpStatusCode.OK)
+            {
+                return Json(result);
+            }
+            else
+            {
+                return Content(statusCode, result);
+            }
         }
 
         [HttpGet]
         public IHttpActionResult Get(string title, int? year, string details)
         {
+            HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
-            IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/album/{0}/{1}/details",
-                title, year));
-            return Json(result);
+            IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/album/{0}/{1}/{2}",
+                title, year, details), out statusCode);
+
+            if (statusCode == HttpStatusCode.OK)
+            {
+                return Json(result);
+            }
+            else
+            {
+                return Content(statusCode, result);
+            }
         }
     }
 }
