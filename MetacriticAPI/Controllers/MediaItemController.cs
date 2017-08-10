@@ -19,18 +19,6 @@ namespace MetacriticAPI.Controllers
             m_metacriticService = metacriticService;
         }
 
-        private IHttpActionResult GetReturn(HttpStatusCode statusCode, IMetacriticData[] result)
-        {
-            if (statusCode == HttpStatusCode.OK)
-            {
-                return Json(result);
-            }
-            else
-            {
-                return Content(statusCode, result);
-            }
-        }
-
         [HttpGet]
         public IHttpActionResult Get(string title)
         {
@@ -39,7 +27,7 @@ namespace MetacriticAPI.Controllers
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}", m_keyword,
                 title), out statusCode);
 
-            return GetReturn(statusCode, result);
+            return Content(statusCode, result);
         }
 
         [HttpGet]
@@ -50,7 +38,7 @@ namespace MetacriticAPI.Controllers
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}/{2}",
                 m_keyword, title, details), out statusCode);
 
-            return GetReturn(statusCode, result);
+            return Content(statusCode, result);
         }
 
         [HttpGet]
@@ -61,7 +49,7 @@ namespace MetacriticAPI.Controllers
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}/{2}",
                 m_keyword, title, year), out statusCode);
 
-            return GetReturn(statusCode, result);
+            return Content(statusCode, result);
         }
 
         [HttpGet]
@@ -72,7 +60,7 @@ namespace MetacriticAPI.Controllers
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}/{2}/{3}",
                 m_keyword, title, year, details), out statusCode);
 
-            return GetReturn(statusCode, result);
+            return Content(statusCode, result);
         }
     }
 }

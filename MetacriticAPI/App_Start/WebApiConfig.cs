@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Net.Http.Formatting;
+using Newtonsoft.Json;
 
 namespace MetacriticAPI
 {
@@ -10,13 +12,20 @@ namespace MetacriticAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.Formatters.JsonFormatter.MediaTypeMappings
+                .Add(new RequestHeaderMapping("Accept", "text/html", 
+                StringComparison.InvariantCultureIgnoreCase, true, "application/json"));
+
+            config.Formatters.JsonFormatter.SerializerSettings.NullValue‌​Handling = NullValueHandling.Ignore;
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "MediaItemRoute",
-                routeTemplate: "api/{controller}/{title}");
+                name: "MediaItemRouteWithDetails",
+                routeTemplate: "api/{controller}/{title}/{details}",
+                defaults: new { action = "GetDetails" },
+                constraints: new { details = @"details|movie|album|tvshow" });
 
             config.Routes.MapHttpRoute(
                 name: "MediaItemRouteWithYear",
@@ -25,13 +34,10 @@ namespace MetacriticAPI
                 constraints: new { year = @"\d+" });
 
             config.Routes.MapHttpRoute(
-                name: "MediaItemRouteWithDetails",
-                routeTemplate: "api/{controller}/{title}/{details}",
-                defaults: new { action = "GetDetails" });
-
-            config.Routes.MapHttpRoute(
                 name: "MediaItemRouteWithYearAndDetails",
-                routeTemplate: "api/{controller}/{title}/{year}/{details}");
+                routeTemplate: "api/{controller}/{title}/{year}/{details}",
+                defaults: new { year = RouteParameter.Optional, details = RouteParameter.Optional });
+
         }
     }
 }

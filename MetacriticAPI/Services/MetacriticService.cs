@@ -51,9 +51,16 @@ namespace MetacriticAPI.Services
             {
                 m_activeRequest.Add(id, item);
             }
-            item.WaitEvent.WaitOne(30000);
 
-            statusCode = HttpStatusCode.OK;
+            if (item.WaitEvent.WaitOne(30000))
+            {
+                statusCode = HttpStatusCode.OK;
+            }
+            else
+            {
+                statusCode = HttpStatusCode.ServiceUnavailable;
+            }
+
             return item.Response;
         }
 
