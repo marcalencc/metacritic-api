@@ -90,16 +90,16 @@ namespace MetacriticAPI.Services
 
         private class ResponseItem
         {
-            private IMetacriticData[] m_reponse;
+            private IMetacriticData[] m_response;
             public IMetacriticData[] Response
             {
                 get
                 {
-                    return m_reponse;
+                    return m_response;
                 }
                 set
                 {
-                    m_reponse = value;
+                    m_response = value;
                 }
             }
 
