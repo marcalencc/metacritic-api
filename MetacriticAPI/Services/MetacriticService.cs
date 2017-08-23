@@ -5,6 +5,7 @@ using MetacriticScraper.Scraper;
 using MetacriticScraper.Interfaces;
 using MetacriticScraper.Errors;
 using System.Threading;
+using NLog;
 
 namespace MetacriticAPI.Services
 {
@@ -13,6 +14,7 @@ namespace MetacriticAPI.Services
         private IScraper m_metacriticScraper;
         private Dictionary<string, ResponseItem> m_activeRequest;
         private object m_requestItemsLock;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public MetacriticService(int limit)
         {
@@ -21,15 +23,16 @@ namespace MetacriticAPI.Services
             m_requestItemsLock = new object();
         }
 
-        public IMetacriticData[] GetResult(string id, string url, out HttpStatusCode statusCode)
+        public IMetacriticData[] GetResult(string id, string url, string ip, out HttpStatusCode statusCode)
         {
             try
             {
+                Logger.Info("Added request => IP: {0}, Url: {1}", ip, url);
                 m_metacriticScraper.AddItem(id, url);
             }
             catch(SystemBusyException ex)
             {
-                // log
+                Logger.Error("Exception encountered {0}", ex.ToString());
                 Error[] error = new Error[1];
                 Error err = new Error(ex);
                 error[0] = err;
@@ -38,7 +41,7 @@ namespace MetacriticAPI.Services
             }
             catch (InvalidUrlException ex)
             {
-                // log
+                Logger.Error("Exception encountered {0}", ex.ToString());
                 Error[] error = new Error[1];
                 Error err = new Error(ex);
                 error[0] = err;

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using MetacriticAPI.Services;
 using MetacriticScraper.Interfaces;
+using MetacriticAPI.Helpers;
 
 namespace MetacriticAPI.Controllers
 {
@@ -24,8 +25,9 @@ namespace MetacriticAPI.Controllers
         {
             HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
+            string ip = HttpExtensions.GetClientIP(Request);
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}", m_keyword,
-                title), out statusCode);
+                title), ip, out statusCode);
 
             return Content(statusCode, result);
         }
@@ -35,8 +37,9 @@ namespace MetacriticAPI.Controllers
         {
             HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
+            string ip = HttpExtensions.GetClientIP(Request);
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}/{2}",
-                m_keyword, title, details), out statusCode);
+                m_keyword, title, details), ip, out statusCode);
 
             return Content(statusCode, result);
         }
@@ -46,8 +49,9 @@ namespace MetacriticAPI.Controllers
         {
             HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
+            string ip = HttpExtensions.GetClientIP(Request);
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}/{2}",
-                m_keyword, title, year), out statusCode);
+                m_keyword, title, year), ip, out statusCode);
 
             return Content(statusCode, result);
         }
@@ -57,8 +61,9 @@ namespace MetacriticAPI.Controllers
         {
             HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
+            string ip = HttpExtensions.GetClientIP(Request);
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/{0}/{1}/{2}/{3}",
-                m_keyword, title, year, details), out statusCode);
+                m_keyword, title, year, details), ip, out statusCode);
 
             return Content(statusCode, result);
         }

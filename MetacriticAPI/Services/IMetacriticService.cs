@@ -10,7 +10,7 @@ namespace MetacriticAPI.Services
 {
     public interface IMetacriticService
     {
-        IMetacriticData[] GetResult(string id, string url, out HttpStatusCode statusCode);
+        IMetacriticData[] GetResult(string id, string url, string ip, out HttpStatusCode statusCode);
         void ResponseChannel(string id, IMetacriticData[] reponses);
         string GetId();
     }

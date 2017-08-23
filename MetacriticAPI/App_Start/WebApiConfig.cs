@@ -23,19 +23,19 @@ namespace MetacriticAPI
 
             config.Routes.MapHttpRoute(
                 name: "MediaItemRouteWithDetails",
-                routeTemplate: "metacriticApi/{controller}/{title}/{details}",
+                routeTemplate: "metacritic/{controller}/{title}/{details}",
                 defaults: new { action = "GetDetails" },
                 constraints: new { details = @"details|movie|album|tvshow" });
 
             config.Routes.MapHttpRoute(
                 name: "MediaItemRouteWithYear",
-                routeTemplate: "metacriticApi/{controller}/{title}/{year}",
+                routeTemplate: "metacritic/{controller}/{title}/{year}",
                 defaults: new { action = "GetItemWithYear" },
                 constraints: new { year = @"\d+" });
 
             config.Routes.MapHttpRoute(
                 name: "MediaItemRouteWithYearAndDetails",
-                routeTemplate: "metacriticApi/{controller}/{title}/{year}/{details}",
+                routeTemplate: "metacritic/{controller}/{title}/{year}/{details}",
                 defaults: new { year = RouteParameter.Optional, details = RouteParameter.Optional });
 
         }

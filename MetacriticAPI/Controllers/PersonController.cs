@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using MetacriticAPI.Services;
 using MetacriticScraper.Interfaces;
+using MetacriticAPI.Helpers;
 
 namespace MetacriticAPI.Controllers
 {
@@ -23,8 +24,9 @@ namespace MetacriticAPI.Controllers
         {
             HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
+            string ip = HttpExtensions.GetClientIP(Request);
             IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/person/{0}/{1}",
-                title, details), out statusCode);
+                title, details), ip, out statusCode);
 
             return Content(statusCode, result);
         }
