@@ -17,7 +17,7 @@ Note: If the name or title has a '-', prefix it with a '~' e.g (/person/jay~-z/a
 ```
 # Example
 
-Request: api.marcalencc.com/metacritic/tvshow/the-big-bang-theory/1<br/><br/>
+Request: http://api.marcalencc.com/metacritic/tvshow/the-big-bang-theory/1<br/><br/>
 Response:
 ```json
 [  
