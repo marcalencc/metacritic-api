@@ -3,11 +3,11 @@ This is now deployed.
 
 You can use the ff endpoints:
 ```
-marcalencc.com/metacriticApi/<mediaType>/<title-separated-by-a-dash>
-marcalencc.com/metacriticApi/<mediaType>/<title-separated-by-a-dash>/<year>
-marcalencc.com/metacriticApi/<mediaType>/<title-separated-by-a-dash>/<details>
-marcalencc.com/metacriticApi/<mediaType>/<title-separated-by-a-dash>/<year>/<details>
-marcalencc.com/metacriticApi/person/<name-separated-by-a-dash>/<mediaType>
+api.marcalencc.com/metacritic/<mediaType>/<title-separated-by-a-dash>
+api.marcalencc.com/metacritic/<mediaType>/<title-separated-by-a-dash>/<year>
+api.marcalencc.com/metacritic/<mediaType>/<title-separated-by-a-dash>/<details>
+api.marcalencc.com/metacritic/<mediaType>/<title-separated-by-a-dash>/<year>/<details>
+api.marcalencc.com/metacritic/person/<name-separated-by-a-dash>/<mediaType>
 
 <mediaType> = album|tvshow|movie
 <year> = specify the release year e.g (2015) or season for tv shows e.g. (6) to filter the results
@@ -17,7 +17,7 @@ Note: If the name or title has a '-', prefix it with a '~' e.g (/person/jay~-z/a
 ```
 # Example
 
-Request: http://marcalencc.com/metacriticApi/tvshow/the-big-bang-theory/1<br/><br/>
+Request: api.marcalencc.com/metacritic/tvshow/the-big-bang-theory/1<br/><br/>
 Response:
 ```json
 [  
