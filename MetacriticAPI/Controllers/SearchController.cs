@@ -20,13 +20,16 @@ namespace MetacriticAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetDetails(string title, string details)
+        public IHttpActionResult GetDetails(string title, string details, string offset = "",
+            string limit = "")
         {
             HttpStatusCode statusCode;
             string id = m_metacriticService.GetId();
+
             string ip = HttpExtensions.GetClientIP(Request);
-            IMetacriticData[] result = m_metacriticService.GetResult(id, string.Format("/search/{0}/{1}",
-                title, details), ip, out statusCode);
+            IMetacriticData[] result = m_metacriticService.GetResult(id,
+                string.Format("/search/{0}/{1}?offset={2}&limit={3}", title, details, offset, limit),
+                ip, out statusCode);
 
             return Content(statusCode, result);
         }

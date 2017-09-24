@@ -23,8 +23,9 @@ namespace MetacriticAPI
 
             config.Routes.MapHttpRoute(
                 name: "MediaItemRouteWithDetails",
-                routeTemplate: "metacritic/{controller}/{title}/{details}",
-                defaults: new { action = "GetDetails" },
+                routeTemplate: "metacritic/{controller}/{title}/{details}/{offset}/{limit}",
+                defaults: new { action = "GetDetails", offset = RouteParameter.Optional,
+                    limit = RouteParameter.Optional },
                 constraints: new { details = @"details|movie|album|tvshow" });
 
             config.Routes.MapHttpRoute(
