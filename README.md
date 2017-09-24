@@ -7,7 +7,7 @@ api.marcalencc.com/metacritic/search/<dash-separated-search-string>/<mediaType>
 <mediaType> = album|tvshow|movie
 ```
  # Example
- Request: http://api.marcalencc.com/metacritic/search/spider-man/movie<br/><br/>
+ Request: http://api.marcalencc.com/metacritic/search/spider-man/movie
  Response: 
  ```json
 <snip>
@@ -58,7 +58,7 @@ api.marcalencc.com/metacritic/person/<name-separated-by-a-dash>/<mediaType>
 <mediaType> = album|tvshow|movie
 ```
  # Example
- Request: http://api.marcalencc.com/metacritic/person/car-seat-headrest/album<br/><br/>
+ Request: http://api.marcalencc.com/metacritic/person/car-seat-headrest/album
  Response: 
 ```json
 [  
@@ -118,7 +118,7 @@ Note: If the name or title has a '-', prefix it with a '~' e.g (/person/jay~-z/a
 
 # Example
 
-Request: http://api.marcalencc.com/metacritic/tvshow/the-big-bang-theory/1<br/><br/>
+Request: http://api.marcalencc.com/metacritic/tvshow/the-big-bang-theory/1
 Response:
 ```json
 [  
@@ -138,7 +138,7 @@ Response:
 ]
 ```
 
-Request: http://api.marcalencc.com/metacritic/album/1989/2014<br/><br/>
+Request: http://api.marcalencc.com/metacritic/album/1989/2014
 Response:
 ```json
 [  
@@ -157,7 +157,7 @@ Response:
 ]
 ```
 
-Request: http://api.marcalencc.com/metacritic/movie/black-swan/details<br/><br/>
+Request: http://api.marcalencc.com/metacritic/movie/black-swan/details
 Response:
 ```json
 <snip>
