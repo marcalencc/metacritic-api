@@ -17,8 +17,6 @@ api.marcalencc.com/metacritic/search/<dash-separated-search-string>/<mediaType>
          {  
             "Id":"/movie/spider-man-homecoming",
             "Title":"Spider-Man: Homecoming",
-            "ReleaseDate":"July 7, 2017",
-            "Genre":"Action, Adventure, Sci-Fi, Fantasy, Family",
             "Rating":{  
                "CriticRating":73
             }
@@ -26,8 +24,6 @@ api.marcalencc.com/metacritic/search/<dash-separated-search-string>/<mediaType>
          {  
             "Id":"/movie/spider-man-2",
             "Title":"Spider-Man 2",
-            "ReleaseDate":"June 30, 2004",
-            "Genre":"Action, Sci-Fi, Thriller, Fantasy",
             "Rating":{  
                "CriticRating":83
             }
@@ -35,8 +31,6 @@ api.marcalencc.com/metacritic/search/<dash-separated-search-string>/<mediaType>
          {  
             "Id":"/movie/the-amazing-spider-man-2",
             "Title":"The Amazing Spider-Man 2",
-            "ReleaseDate":"May 2, 2014",
-            "Genre":"Action, Adventure, Fantasy",
             "Rating":{  
                "CriticRating":53
             }
